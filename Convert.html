@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        <title>Chuyển đổi tiền tệ</title>
+    </head>
+    <body>
+        <h1>Chuyển đổi tiền tệ</h1>
+        <table cellspacing="0">
+            <thead>
+                <tr>
+                    <th><label for=Amount>Amount</label></th>
+                    <th>From Currency</th>
+                    <th>To Currency</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td><input type="number" placeholder="Nhập số tiền" id="Amount"></td>
+                    <td align="center">
+                        <select id="from">
+                            <option value="VND">VND</option>
+                            <option value="USD">USD</option>
+                        </select>
+                    </td>
+                    <td align="center">
+                        <select id="to">
+                            <option value="VND">VND</option>
+                            <option value="USD">USD</option>
+                        </select>
+                    </td>
+                    <td><button onclick="convert()">Convert</button></td>
+                </tr>
+                <tfoot>
+                    <td colspan="4"><p id="result"></p></td>
+                </tfoot>
+            </thead>
+        </table>
+        <script>
+            function convert(){
+                let amount = document.getElementById('Amount').value;
+                let from = document.getElementById('from').value;
+                let to = document.getElementById('to').value;
+                let result;
+                if (from == "USD" && to == "VND"){
+                    result = 'Result ' + (amount *26000).toLocaleString('vi-VN') + ' VND';
+                } else if (from == "VND" && to == "USD") {
+                    result = 'Result ' + (amount / 26000).toLocaleString('en-US') + ' $';
+                } else if (from == "VND"){
+                    result = 'Result ' + amount.toLocaleString('vi-VN') + ' VND';
+                } else {
+                    result = 'Result ' + amount.toLocaleString('en-US') + ' $';
+                }
+                document.getElementById('result').innerHTML = result;
+            }
+        </script>
+    </body>
+</html>
